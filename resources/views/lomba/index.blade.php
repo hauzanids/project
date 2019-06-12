@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
       <div class="main">
         <div class="main-content">
@@ -38,10 +38,9 @@
                         <tr>
                           <td>{{$nomor++}}</td>
                           <td>{{$lomba->judul}}</td>
-                          <td>none</td>
+                          <td><img src="{{ URL::to('/') }}/img/{{ $lomba->gambar }}" class="img-thumbnail" width="75"></td>
                           <td>{{$lomba->penyelenggara}}</td>
                           <td>{{$lomba->tempat}}</td>
-
                           <td>{!!$lomba->deskripsi!!}</td>
                           <td>{{$lomba->waktu_pelaksanaan}}</td>
                           <td><a href="/lomba/{{$lomba->id}}/edit" class="btn btn-warning">Edit</a>
@@ -66,7 +65,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                      <form action="/lomba/create" method="POST">
+                      <form action="{{ route('lomba.store') }}" method="POST" enctype="multipart/form-data">
                       {{csrf_field()}}
 
                       <div class="form-group">
@@ -90,8 +89,13 @@
                       </div>
 
                       <div class="form-group">
+                        <label for="gambar">Gambar</label>
+                        <input type="file" class="form-control" name="gambar">
+                      </div>
+
+                      <div class="form-group">
                         <label for="waktu">Waktu Pelaksanaan</label>
-                        <input type="text" class="form-control" name="waktu_pelaksanaan" placeholder="dd-mm-yyyy">
+                        <input type="text" class="form-control" name="waktu_pelaksanaan" placeholder="yyyy-mm-dd">
                       </div>
                       <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

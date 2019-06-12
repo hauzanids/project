@@ -8,8 +8,9 @@
 		<h1 class="text-center">Edit Daftar lomba</h1>
 		<div class="row">
 			
-	  <form action="/lomba/{{$lomba->id}}/update" method="POST">
-	  {{csrf_field()}}
+	  <form action="{{ route('lomba.update', $lomba->id) }}" method="POST" enctype="multipart/form-data">
+	  @csrf
+    @method('PATCH')
 
 	  <div class="form-group">
 	    <label for="judul">Judul</label>
@@ -32,6 +33,13 @@
 	    	{{$lomba->deskripsi}}
 	    </textarea>
 	  </div>
+
+    <div class="form-group">
+      <label for="gambar">Gambar</label>
+      <input type="file" class="form-control" name="gambar">
+      <img src="{{ URL::to('/') }}/img/{{ $lomba->gambar }}" class="img-thumbnail" width="100" />
+      <input type="hidden" name="hidden_gambar" value="{{ $lomba->gambar }}" />
+    </div>
 
 	  <div class="form-group">
 	    <label for="waktu">Waktu Pelaksanaan</label>

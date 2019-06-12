@@ -8,5 +8,5 @@ class Lomba extends Model
 {
     //
     protected $table='lomba';
-    protected $fillable =['judul','penyelenggara','tempat','deskripsi','waktu_pelaksanaan'];
+    protected $fillable =['judul','gambar','penyelenggara','tempat','deskripsi','waktu_pelaksanaan'];
 }

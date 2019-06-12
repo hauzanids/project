@@ -14,8 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('lomba','LombaController');
 Route::get('/lomba', 'LombaController@index');
 Route::post('/lomba/create', 'LombaController@create');
 Route::get('/lomba/{id}/edit','LombaController@edit');
 Route::post('/lomba/{id}/update','LombaController@update');
 Route::get('/lomba/{id}/delete','LombaController@delete');
+Auth::routes();
+
+Route::get('/home', 'LombaController@index');
